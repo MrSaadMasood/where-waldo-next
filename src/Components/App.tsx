@@ -179,9 +179,10 @@ export default function App() {
 
   return (
     <div className="relative bg-black h-auto">
+
+      {!isImageLoaded && <Loader />}
       {isGamecompleted &&
         <div className="fixed top-0 left-0 w-[100%] h-[100%] bg-black opacity-60 z-30">
-          {/* {!isImageLoaded && <Loader />} */}
         </div>
       }
       {isGamecompleted &&
