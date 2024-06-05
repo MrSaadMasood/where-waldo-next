@@ -1,18 +1,18 @@
 'use client'
 import { MouseEvent, useEffect, useRef, useState } from "react";
-import Navigation from "./Navigation";
+import HighScore from "./HighScores";
 import Menu from "./Menu";
-import SideBar from "./SideBar";
-import WrongSelection from "./WrongSelection";
+import Navigation from "./Navigation";
 import RightLocations from "./RightLocations";
 import RightSelection from "./RightSelection";
-import HighScore from "./HighScores";
+import SideBar from "./SideBar";
+import WrongSelection from "./WrongSelection";
 // import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
 import { CharacterData, Coordinates } from "@/types/types";
-import Image from "next/image";
 import axios from "axios";
-import { useRouter } from "next/router";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import Loader from "./Loader";
 export default function App() {
 
   const imageRef = useRef<HTMLImageElement | null>(null)
@@ -180,7 +180,9 @@ export default function App() {
   return (
     <div className="relative bg-black h-auto">
       {isGamecompleted &&
-        <div className="fixed top-0 left-0 w-[100%] h-[100%] bg-black opacity-60 z-30"></div>
+        <div className="fixed top-0 left-0 w-[100%] h-[100%] bg-black opacity-60 z-30">
+          {/* {!isImageLoaded && <Loader />} */}
+        </div>
       }
       {isGamecompleted &&
         <HighScore time={time} id={id} />
@@ -201,7 +203,13 @@ export default function App() {
 
         <RightLocations locations={realLocations} divHeight={imageDivElememtHeight} />
         {mainGameImage &&
-          <Image src={mainGameImage} onLoad={() => setIsImageLoaded(true)} priority={true} alt="gameImage" width={0} height={0} sizes="100vw" className="w-full h-full" />
+          <Image src={mainGameImage} onLoad={(e) => {
+            setIsImageLoaded(true)
+            e.currentTarget.classList.remove("opacity-0")
+          }} priority={true} alt="gameImage" width={0} height={0} sizes="100vw"
+            className="w-full h-full transition-opacity opacity-0 duration-[2s]"
+
+          />
         }
       </div>
       <SideBar heightWidth={heightWidth} characters={charactersToUse} />

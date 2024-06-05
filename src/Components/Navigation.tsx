@@ -48,7 +48,7 @@ export default function Navigation(
       if (buttonClicked) setButtonClicked()
     }}>
       <div className="absolute top-4 sm:top-5 xl:top-6 left-3 md:left-4 lg:left-5 xl:left-7 ">
-        <Image src="/logo.png" alt="gameLogo" width={35} height={35} className=" xl:w-[50px]" />
+        <Image src="/logo.png" alt="gameLogo" width={35} height={35} className="w-auto" />
       </div>
       <div className=" absolute top-4 sm:top-5 xl:top-7 left-[43%] md:left-[45%] lg:left-[47%] 
              lg:text-xl flex justify-center items-center">
