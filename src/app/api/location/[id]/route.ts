@@ -1,9 +1,9 @@
 import { dbConnect } from "@/lib/connection";
 import { Character } from "@/types/types";
 import { ObjectId } from "mongodb";
-import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function GET(request: NextResponse, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const searchParams = new URL(request.url).searchParams
   const charId = searchParams.get("charId")
   const x = searchParams.get("x")
